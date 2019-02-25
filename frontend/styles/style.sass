@@ -27,6 +27,102 @@ ol, ul
 	list-style: none
 
 
-/* =============================================G L O B A L */
-body
-    background: grey
+/* ============================================= G L O B A L */
+$l-grey: #91928D
+$l-dark: rgba(0,0,0,0.5)
+$l-blue: #17e1e2
+
+// =keyframes slideInLeft
+// 	0%
+// 		
+// 	100% 
+// 		
+
+// =keyframes slideInRight 
+// 	0% 
+// 		
+// 	100% 
+// 		
+
+
+#slider
+	width: 60%
+	height: auto
+	margin: auto
+	.slider-container
+		position: relative
+	.slider-body
+		overflow: hidden
+	.slider-items
+		position: relative
+		.item
+			display: none
+			background: rgba(0,0,0,0.5)
+			height: 500px
+			width: 950px
+			position: relative
+			background-size: cover
+			background-repeat: no-repeat
+			background-position: 50% 50%
+		.item[data-item="1"]
+			background-image: url("../img/1.jpg")
+		.item[data-item="2"]
+			background-image: url("../img/2.jpg")
+		.item[data-item="3"]
+			background-image: url("../img/3.jpg")
+		.item[data-item="4"]
+			background-image: url("../img/4.jpg")
+		.item[data-item="5"]
+			background-image: url("../img/5.jpg")
+		.item[data-item="6"]
+			background-image: url("../img/6.jpg")
+		.item[data-item="7"]
+			background-image: url("../img/7.jpg")
+		.item[data-item="8"]
+			background-image: url("../img/8.jpg")
+		.item[data-item="9"]
+			background-image: url("../img/9.jpg")
+		.item[data-item="10"]
+			background-image: url("../img/10.jpg")
+		
+
+	.control
+		position: absolute
+		top: 0
+		width: 100px
+		font-size: 3em
+		display: flex
+		align-items: center
+		justify-content: center
+		height: 100%
+		z-index: 1
+		i
+			color: $l-grey
+		&:hover
+			background: $l-dark
+			cursor: pointer
+			i
+				color: $l-blue
+	.left
+		left: 0
+	.right
+		right: 0
+
+	.pages
+		bottom: -25px
+		position: absolute
+		width: 100%
+		.wrapper
+			display: flex
+			justify-content: space-around
+			width: 200px
+			margin: auto
+			.rect
+				width: 10px
+				height: 10px
+				border-radius: 50%
+				background: grey
+				&.active
+					background: $l-blue
+
+	
