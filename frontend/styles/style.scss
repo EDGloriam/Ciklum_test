@@ -36,11 +36,32 @@ $l-dark: rgba(0,0,0,0.3);
 $l-blue: #0493E5;
 @import 'mixin_media';
 		
-@mixin my($radius){
-	-webkit-border-radius: $radius;
-	-moz-border-radius:    $radius;
-	-ms-border-radius:     $radius;
-	border-radius:         $radius;
+@mixin keyframes($animationName)
+{
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName}  {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@include keyframes(appearing) {
+	0% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 #slider{
@@ -71,6 +92,9 @@ $l-blue: #0493E5;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: 50% 50%;
+			&.active{
+				animation: appearing 1s;
+			}
 		}
 		.item[data-item="1"]{
 			background-image: url("../img/1.jpg");

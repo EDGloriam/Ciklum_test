@@ -21,9 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const moveForward = (moveRight) => {
             let nextPosition = getPosition(moveRight, currentSlidePosition);
             slides[currentSlidePosition].style.display = 'none';
+            slides[currentSlidePosition].classList.remove('active');
+            pages[currentSlidePosition].classList.remove('active');
+
             slides[nextPosition].style.display = 'block';
             pages[nextPosition].classList.add('active');
-            pages[currentSlidePosition].classList.remove('active');
+            slides[nextPosition].classList.add('active');
+            
 
             currentSlidePosition = nextPosition;
         }
