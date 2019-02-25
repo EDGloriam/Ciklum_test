@@ -1,0 +1,161 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section{
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+body{
+	min-width: 320px;
+}
+
+$l-grey: #91928D;
+$l-dark: rgba(0,0,0,0.3);
+$l-blue: #0493E5;
+@import 'mixin_media';
+		
+@mixin my($radius){
+	-webkit-border-radius: $radius;
+	-moz-border-radius:    $radius;
+	-ms-border-radius:     $radius;
+	border-radius:         $radius;
+}
+
+#slider{
+	width: 70%;
+	@include media((
+		width: (xs: 95%, sm: 95%, md: 90%, lg: 80%)
+	));
+	height: auto;
+	margin: auto;
+	.slider-container{
+		position: relative;
+	}
+	.slider-body{
+		overflow: hidden;
+	}
+	.slider-items{
+		position: relative;
+		.item{
+			border-radius: 25px;
+			@include media((
+				height: (all: 550px, sm: 250px, md: 300px , lg: 400px, xl: 500px),
+				border-radius: (all: 10px, xs: 10px, sm: 10px, md: 10px)
+			));
+			display: none;
+			background: rgba(0,0,0,0.3);
+			// width: 950px
+			position: relative;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+		}
+		.item[data-item="1"]{
+			background-image: url("../img/1.jpg");
+		}
+		.item[data-item="2"]{
+			background-image: url("../img/2.jpg");
+		}	
+		.item[data-item="3"]{
+			background-image: url("../img/3.jpg");
+		}	
+		.item[data-item="4"]{
+			background-image: url("../img/4.jpg");
+		}	
+		.item[data-item="5"]{
+			background-image: url("../img/5.jpg");
+		}	
+		.item[data-item="6"]{
+			background-image: url("../img/6.jpg");
+		}	
+		.item[data-item="7"]{
+			background-image: url("../img/7.jpg");
+		}
+		.item[data-item="8"]{
+			background-image: url("../img/8.jpg");
+		}
+		.item[data-item="9"]{
+			background-image: url("../img/9.jpg");
+		}
+		.item[data-item="10"]{
+			background-image: url("../img/10.jpg");
+		}	
+		
+	}
+	.control{
+		position: absolute;
+		top: 0;
+		@include media((
+				width: (all: 70px, xs: 30px, sm: 35px, md: 45px, lg: 50px),
+				font-size: (all: 3em, xs: 1em, sm: 1.1em, md: 1.5em, lg: 2em)
+			));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		z-index: 1;
+		i{
+			color: $l-grey;
+		}
+		&:hover{
+			background: $l-dark;
+			cursor: pointer;
+			i{
+				color: $l-blue;
+			}
+		}
+	}
+	.left{
+		left: 0;
+	}
+	.right{
+		right: 0;
+	}
+	.pages{
+		bottom: -25px;
+		position: absolute;
+		width: 100%;
+		.wrapper{
+			display: flex;
+			justify-content: space-around;
+			width: 200px;
+			margin: auto;
+			.rect{
+				@include media((
+					width: (all: 12px, xs: 8px, sm: 8px, md: 10px),
+					height: (all: 12px, xs: 8px, sm: 8px, md:10px)
+				));
+				border-radius: 50%;
+				background: grey;
+				&.active{
+					background: $l-blue;
+				}
+				&:hover{
+					cursor: pointer;
+				}
+			}
+		}
+	}			
+}	

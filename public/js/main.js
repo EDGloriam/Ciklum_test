@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var slider = document.getElementById('slider');
     var slides = document.getElementsByClassName('item');
     var pages = document.getElementsByClassName('rect');
-    var MAX_ITEMS = 10;
+    var MAX_ITEMS = slides.length;
     var currentSlidePosition = 0;
     slides[0].style.display = 'block';
+    pages[0].classList.add('active');
     slider.addEventListener('click', function () {
       var targetClasses = event.target.classList.value;
 

@@ -2,6 +2,8 @@
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const gcmq = require('gulp-group-css-media-queries');
+// const clear = require('gulp-minify-css');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const gulpIf = require('gulp-if');
@@ -22,6 +24,7 @@ gulp.task('styles', function(){
     return gulp.src('frontend/styles/*.*') 
         .pipe(gulpIf(isDevMode, sourcemaps.init()))
         .pipe(sass())
+        .pipe(gcmq())
         .pipe(concat('all.css'))
         .pipe(autoprefixer('last 2 versions'))
         .pipe(gulpIf(isDevMode, sourcemaps.write()))
