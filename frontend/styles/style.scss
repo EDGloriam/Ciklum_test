@@ -30,10 +30,15 @@ ol, ul {
 body{
 	min-width: 320px;
 }
+*{
+	box-sizing: border-box;
+}
 
 $l-grey: #91928D;
 $l-dark: rgba(0,0,0,0.3);
 $l-blue: #0493E5;
+$radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
+
 @import 'mixin_media';
 		
 @mixin keyframes($animationName)
@@ -52,19 +57,29 @@ $l-blue: #0493E5;
     }
 }
 
-@include keyframes(appearing) {
+@include keyframes(appearingLeft) {
 	0% {
-		opacity: 0;
-	}
-	30% {
-		opacity: 0.5;
+		left: -15px;
+		opacity: 0.7;
 	}
 	100% {
+		left: 0;
+		opacity: 1;
+	}
+}
+@include keyframes(appearingRight) {
+	0% {
+		right: -15px;
+		opacity: 0.7;
+	}
+	100% {
+		right: 0;
 		opacity: 1;
 	}
 }
 
 #slider{
+	padding-top: 10px;
 	width: 70%;
 	@include media((
 		width: (xs: 95%, sm: 95%, md: 90%, lg: 80%)
@@ -83,7 +98,7 @@ $l-blue: #0493E5;
 			border-radius: 25px;
 			@include media((
 				height: (all: 550px, sm: 250px, md: 300px , lg: 400px, xl: 500px),
-				border-radius: (all: 10px, xs: 10px, sm: 10px, md: 10px)
+				border-radius: $radius
 			));
 			display: none;
 			background: rgba(0,0,0,0.3);
@@ -92,8 +107,11 @@ $l-blue: #0493E5;
 			background-size: cover;
 			background-repeat: no-repeat;
 			background-position: 50% 50%;
-			&.active{
-				animation: appearing 1s;
+			&.show.from-left{
+				animation: appearingLeft 1s;
+			}
+			&.show.from-right{
+				animation: appearingRight 1s;
 			}
 		}
 		.item[data-item="1"]{
@@ -133,7 +151,8 @@ $l-blue: #0493E5;
 		top: 0;
 		@include media((
 				width: (all: 70px, xs: 30px, sm: 35px, md: 45px, lg: 50px),
-				font-size: (all: 3em, xs: 1em, sm: 1.1em, md: 1.5em, lg: 2em)
+				font-size: (all: 3em, xs: 1em, sm: 1.1em, md: 1.5em, lg: 2em),
+				border-radius: $radius
 			));
 		display: flex;
 		align-items: center;
@@ -153,9 +172,13 @@ $l-blue: #0493E5;
 	}
 	.left{
 		left: 0;
+		border-bottom-right-radius: inherit;
+    	border-top-right-radius: inherit;
 	}
 	.right{
 		right: 0;
+		border-bottom-left-radius: inherit;
+    	border-top-left-radius: inherit;
 	}
 	.pages{
 		bottom: -25px;
@@ -167,6 +190,7 @@ $l-blue: #0493E5;
 			width: 200px;
 			margin: auto;
 			.rect{
+				box-shadow: 0px 0px 2px 1px #000;
 				@include media((
 					width: (all: 12px, xs: 8px, sm: 8px, md: 10px),
 					height: (all: 12px, xs: 8px, sm: 8px, md:10px)
