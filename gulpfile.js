@@ -12,6 +12,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync').create();
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
 
 
 const isDevMode = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
@@ -26,6 +27,8 @@ gulp.task('styles', function(){
         .pipe(sass())
         .pipe(gcmq())
         .pipe(concat('all.css'))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(autoprefixer('last 2 versions'))
         .pipe(gulpIf(isDevMode, sourcemaps.write()))
         .pipe(gulp.dest('public/css'));
