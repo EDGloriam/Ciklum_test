@@ -20,7 +20,7 @@ class Slider{
                 this.flip(false)
             }else if(targetClasses.includes('right')){
                 this.flip(true)
-            }else if(targetClasses.includes('rect')){
+            }else if(targetClasses.includes('circle')){
                 let dotPosition = this.dotOrderNumber(event.target);
                 this.flip(true, dotPosition);
             }
@@ -61,17 +61,21 @@ class Slider{
         return dot;
     }
 
-   flip(flipRight, position = null) {
+   flip(flipRight, dotPosition = null) {
+      
         let params = {
             nextPosition: 
-                position || this.getPosition(flipRight),
+                dotPosition || 
+                    (dotPosition == 0 ? 0 : this.getPosition(flipRight)),
             extraClass: 
                 flipRight ? 'show from-left' : 'show from-right' }
-
-        this.changeNext(params)
-        this.changePrev()
-        this.changeDots(params)
-
+        if (params.nextPosition === this.currentSlidePosition){
+            return
+        }else {
+            this.changeNext(params)
+            this.changePrev()
+            this.changeDots(params)
+        }
         this.currentSlidePosition = params.nextPosition;
     }
     changeNext(params){
@@ -90,12 +94,11 @@ class Slider{
     getPosition(flipRight) {
         let position = this.currentSlidePosition;
         position += flipRight ?  1 : -1;
-        
         if(position >= this.MAX_ITEMS){
             return 0
         }
         if(position < 0){
-            return 9
+            return this.MAX_ITEMS - 1
         }
 
         return position;
