@@ -2,15 +2,16 @@ class Slider{
     constructor(params){
         this.slider = document.getElementById('slider');
         this.sliderItems = slider.getElementsByClassName('item');
-        this.dots = slider.getElementsByClassName('rect');
         this.MAX_ITEMS = this.sliderItems.length;
         this.currentSlidePosition = 0;
-        this.baseItemClassList = 'item ';
+        this.baseItemClassList = 'item ';  
+        this.sliderImgs = params.files;      
         this.init()
+        
     }
     init(){
         this.sliderItems[0].style.display = 'block';
-        this.dots[0].classList.add('active');
+        this.appendImgs();
 
         slider.addEventListener('click', () => {
             const targetClasses = event.target.classList.value
@@ -24,6 +25,40 @@ class Slider{
                 this.flip(true, dotPosition);
             }
         });
+        
+        this.slider.appendChild(this.renderDots());
+        this.dots = slider.getElementsByClassName('circle');
+    }
+    appendImgs(){
+        let currentSlide;
+        for(var i = 1; i <= this.sliderImgs.length; i++){
+            currentSlide = this.slider.querySelector(".item[data-item='" + encodeURI(i) + "']");
+            currentSlide.style.backgroundImage = `url('${this.sliderImgs[i-1].url}')`;
+            currentSlide.style.backgroundSize = 'cover';
+        }
+    }
+    renderDots(){
+        let dots = this.initDotsContainer()
+        for(var i = 0; i < this.MAX_ITEMS; i++ ){
+            dots.firstElementChild.appendChild(this.dot(i))
+        } 
+        return dots;
+    }
+    initDotsContainer(){
+        const dotsContainer = document.createElement('div');
+        const wrapper = document.createElement('div');
+
+        dotsContainer.classList.add('pages');
+        wrapper.classList.add('wrapper');
+
+        dotsContainer.appendChild(wrapper);
+        return dotsContainer;
+    }
+    dot(first){
+        const dot = document.createElement('div');
+        dot.classList.add('circle');
+        if(first === 0) { dot.classList.add('active'); }
+        return dot;
     }
 
    flip(flipRight, position = null) {
@@ -79,7 +114,18 @@ class Slider{
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const slider = new Slider({/* wanted to add more flexibility */});    
+    const slider = new Slider({files:[
+        {url: "../img/1.jpg"},
+        {url: "../img/2.jpg"},
+        {url: "../img/3.jpg"},
+        {url: "../img/4.jpg"},
+        {url: "../img/5.jpg"},
+        {url: "../img/6.jpg"},
+        {url: "../img/7.jpg"},
+        {url: "../img/8.jpg"},
+        {url: "../img/9.jpg"},
+        {url: "../img/10.jpg"}
+    ]});    
         
 
  });

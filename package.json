@@ -32,5 +32,8 @@
     "node-sass": "^4.11.0",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^5.2.1"
+  },
+  "dependencies": {
+    "file-system": "^2.2.2"
   }
 }

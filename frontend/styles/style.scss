@@ -79,6 +79,7 @@ $radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
 }
 
 #slider{
+	position: relative;
 	padding-top: 10px;
 	width: 70%;
 	@include media((
@@ -94,6 +95,10 @@ $radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
 	}
 	.slider-items{
 		position: relative;
+		.item[data-item]{
+			background-image: url("../img/default.JPG");
+			background-size: auto; 
+		}
 		.item{
 			border-radius: 25px;
 			@include media((
@@ -114,36 +119,6 @@ $radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
 				animation: appearingRight 1s;
 			}
 		}
-		.item[data-item="1"]{
-			background-image: url("../img/1.jpg");
-		}
-		.item[data-item="2"]{
-			background-image: url("../img/2.jpg");
-		}	
-		.item[data-item="3"]{
-			background-image: url("../img/3.jpg");
-		}	
-		.item[data-item="4"]{
-			background-image: url("../img/4.jpg");
-		}	
-		.item[data-item="5"]{
-			background-image: url("../img/5.jpg");
-		}	
-		.item[data-item="6"]{
-			background-image: url("../img/6.jpg");
-		}	
-		.item[data-item="7"]{
-			background-image: url("../img/7.jpg");
-		}
-		.item[data-item="8"]{
-			background-image: url("../img/8.jpg");
-		}
-		.item[data-item="9"]{
-			background-image: url("../img/9.jpg");
-		}
-		.item[data-item="10"]{
-			background-image: url("../img/10.jpg");
-		}	
 		
 	}
 	.control{
@@ -187,9 +162,9 @@ $radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
 		.wrapper{
 			display: flex;
 			justify-content: space-around;
-			width: 200px;
+			width: max-content;
 			margin: auto;
-			.rect{
+			.circle{
 				box-shadow: 0px 0px 2px 1px #000;
 				@include media((
 					width: (all: 12px, xs: 8px, sm: 8px, md: 10px),
@@ -203,6 +178,9 @@ $radius: (all: 15px, xs: 10px, sm: 10px, md: 10px);
 				&:hover{
 					cursor: pointer;
 				}
+			}
+			.circle + .circle{
+				margin-left: 10px
 			}
 		}
 	}			
