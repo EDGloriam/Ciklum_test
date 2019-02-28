@@ -7,6 +7,7 @@ To make it works:
   1) public/css/all.min.css
   2) public/js/main.min.css 
   3) add your images into public/img
+  
 or just download "public" folder
 
 Usage:
