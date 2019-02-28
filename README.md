@@ -1,14 +1,15 @@
-This is a simple responsive slider. It was written as a test assignment. To make it works:
+This is a simple responsive slider. It was written as a test assignment. 
 
-public/css/all.min.css
-public/js/main.min.css
-add your images into public/img
+To make it works:
+    1)public/css/all.min.css
+    2)public/js/main.min.css
+    3) add your images into public/img
 or just download "public" folder
 
 Usage:
 
 HTML:
-
+```
 <div id="slider">
 <div class="slider-container">
     <div class="control left"><i class="fas fa-chevron-left"></i></div>
@@ -23,10 +24,12 @@ HTML:
 
     <div class="control right"><i class="fas fa-chevron-right"></i></div>
 </div>
+```
 JS:
-
+```
 const slider = new Slider({files:[
     {url: "../img/1.jpg"},
     {url: "../img/2.jpg"},
     {url: "../img/3.jpg"}
 ]});
+```
